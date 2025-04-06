@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   LineChart,
@@ -383,9 +382,9 @@ const Visualize = () => {
   );
 };
 
-// Fix missing imports
+// Fix the duplicate identifier by renaming the LineChart import from lucide-react to LineChartIcon
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { LineChart } from 'lucide-react';
+import { LineChart as LineChartIcon } from 'lucide-react';
 
 export default Visualize;
