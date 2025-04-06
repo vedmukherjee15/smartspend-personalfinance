@@ -24,3 +24,16 @@ export interface UserSettings {
     [key in CategoryType]: number;
   };
 }
+
+export interface BudgetAnalysis {
+  category: string;
+  amount: number;
+  target: number;
+  excess: number;
+}
+
+export interface Recommendation {
+  category: string;
+  recommendation: string;
+  priority: 'high' | 'medium' | 'low';
+}

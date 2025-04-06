@@ -11,10 +11,10 @@ import LoginForm from "./components/auth/LoginForm";
 import Dashboard from "./pages/Dashboard";
 import UploadData from "./pages/UploadData";
 import Visualize from "./pages/Visualize";
+import Recommendations from "./pages/Recommendations";
 import NotFound from "./pages/NotFound";
 
 // Pages to add later
-const Recommendations = () => <div>Recommendations Page</div>;
 const Gamification = () => <div>Gamification Page</div>;
 const Scan = () => <div>Scan & Nudge Page</div>;
 const Settings = () => <div>Settings Page</div>;
