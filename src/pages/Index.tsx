@@ -1,14 +1,18 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import { useAppContext } from "@/context/AppContext";
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
-  );
+  const { isAuthenticated } = useAppContext();
+
+  // If authenticated, redirect to dashboard
+  if (isAuthenticated) {
+    return <Navigate to="/" />;
+  }
+
+  // If not authenticated, redirect to login
+  return <Navigate to="/login" />;
 };
 
 export default Index;
