@@ -257,7 +257,6 @@ const Dashboard = () => {
                   fill="#8884d8"
                   dataKey="value"
                   label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                  labelLine={true}
                 >
                   {pieChartData.map((entry, index) => (
                     <Cell 
@@ -273,10 +272,10 @@ const Dashboard = () => {
                   layout="horizontal" 
                   verticalAlign="bottom" 
                   align="center"
-                  wrapperStyle={{ paddingTop: "20px" }}
+                  wrapperStyle={{ paddingTop: "20px", marginLeft: "20px" }}
                   iconSize={10}
                   iconType="circle"
-                  formatter={(value) => <span style={{ marginLeft: "10px", marginRight: "10px" }}>{value}</span>}
+                  formatter={(value) => <span style={{ marginLeft: "15px", marginRight: "15px" }}>{value}</span>}
                 />
               </PieChart>
             </ResponsiveContainer>
