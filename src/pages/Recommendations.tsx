@@ -185,10 +185,10 @@ const Recommendations = () => {
                       <h4 className="font-medium">{item.category}</h4>
                       <span className="text-red-500 font-medium">+₹{item.excess.toLocaleString()}</span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
+                    <div className="w-full bg-gray-200 rounded-full h-2 mb-3 overflow-hidden">
                       <div 
                         className="h-2 rounded-full bg-red-500" 
-                        style={{ width: `${(item.amount / item.target) * 100}%` }}
+                        style={{ width: `${Math.min(100, (item.amount / item.target) * 100)}%` }}
                       ></div>
                     </div>
                     <p className="text-sm text-gray-700">
@@ -260,7 +260,7 @@ const Recommendations = () => {
                       ₹{item.amount.toLocaleString()} / ₹{target.toLocaleString()}
                     </span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2 mb-1">
+                  <div className="w-full bg-gray-200 rounded-full h-2 mb-1 overflow-hidden">
                     <div 
                       className={`h-2 rounded-full ${overBudget ? 'bg-red-500' : 'bg-green-500'}`} 
                       style={{ width: `${progress}%` }}

@@ -6,10 +6,7 @@ import {
   Home, 
   Upload, 
   LineChart, 
-  LightbulbIcon, 
-  Trophy, 
-  ScanLine, 
-  Settings 
+  LightbulbIcon
 } from "lucide-react";
 
 interface SidebarProps {
@@ -28,9 +25,6 @@ const navItems: NavItem[] = [
   { title: "Upload Data", href: "/upload", icon: Upload },
   { title: "Visualize", href: "/visualize", icon: LineChart },
   { title: "Recommendations", href: "/recommendations", icon: LightbulbIcon },
-  { title: "Gamification", href: "/gamification", icon: Trophy },
-  { title: "Scan & Nudge", href: "/scan", icon: ScanLine },
-  { title: "Settings", href: "/settings", icon: Settings },
 ];
 
 const Sidebar = ({ open, setOpen }: SidebarProps) => {
@@ -60,9 +54,14 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
                 "flex items-center px-4 py-3 text-white rounded-md hover:bg-finance-secondary/80 transition-colors",
                 !open && "justify-center"
               )}
+              title={item.title}
             >
               <item.icon className={cn("h-6 w-6", !open ? "mx-auto" : "mr-3")} />
-              {open && <span>{item.title}</span>}
+              {open ? <span>{item.title}</span> : (
+                <div className="absolute left-full ml-2 px-2 py-1 bg-gray-800 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+                  {item.title}
+                </div>
+              )}
             </Link>
           ))}
         </nav>

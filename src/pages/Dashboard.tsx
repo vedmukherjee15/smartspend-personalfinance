@@ -14,7 +14,8 @@ import {
   ResponsiveContainer,
   PieChart, 
   Pie, 
-  Cell
+  Cell,
+  Legend
 } from 'recharts';
 
 const categoryColors = {
@@ -60,6 +61,22 @@ const Dashboard = () => {
   const monthlyChange = 12.5;
   const isIncrease = monthlyChange > 0;
 
+  // Calculate reward points
+  const calculateRewardPoints = () => {
+    let totalSavings = 0;
+    
+    Object.entries(categoryTotals).forEach(([category, amount]) => {
+      const target = targets[category as keyof typeof targets] || 0;
+      if (amount < target) {
+        totalSavings += (target - amount);
+      }
+    });
+    
+    return (totalSavings / 100).toFixed(2);
+  };
+  
+  const rewardPoints = calculateRewardPoints();
+
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Header section */}
@@ -68,7 +85,11 @@ const Dashboard = () => {
           <h1 className="text-3xl font-bold text-gray-900">Welcome back, {username}</h1>
           <p className="mt-1 text-gray-500">Here's what's happening with your finances</p>
         </div>
-        <div className="mt-4 md:mt-0">
+        <div className="mt-4 md:mt-0 flex items-center gap-4">
+          <div className="bg-amber-100 text-amber-800 font-semibold px-4 py-2 rounded-md flex items-center">
+            <span className="mr-2">💰</span>
+            <span>{rewardPoints} Reward Points</span>
+          </div>
           <button className="flex items-center text-sm font-medium text-finance-primary hover:text-finance-primary/80 transition-colors">
             <RefreshCcw className="mr-1 h-4 w-4" />
             Refresh Data
@@ -231,11 +252,12 @@ const Dashboard = () => {
                   data={pieChartData}
                   cx="50%"
                   cy="50%"
-                  labelLine={false}
+                  labelLine={{ strokeWidth: 1, stroke: "#999" }}
                   outerRadius={100}
                   fill="#8884d8"
                   dataKey="value"
                   label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                  labelLine={true}
                 >
                   {pieChartData.map((entry, index) => (
                     <Cell 
@@ -246,6 +268,15 @@ const Dashboard = () => {
                 </Pie>
                 <Tooltip 
                   formatter={(value: number) => [`₹${value.toLocaleString()}`, 'Amount']} 
+                />
+                <Legend 
+                  layout="horizontal" 
+                  verticalAlign="bottom" 
+                  align="center"
+                  wrapperStyle={{ paddingTop: "20px" }}
+                  iconSize={10}
+                  iconType="circle"
+                  formatter={(value) => <span style={{ marginLeft: "10px", marginRight: "10px" }}>{value}</span>}
                 />
               </PieChart>
             </ResponsiveContainer>

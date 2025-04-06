@@ -14,11 +14,6 @@ import Visualize from "./pages/Visualize";
 import Recommendations from "./pages/Recommendations";
 import NotFound from "./pages/NotFound";
 
-// Pages to add later
-const Gamification = () => <div>Gamification Page</div>;
-const Scan = () => <div>Scan & Nudge Page</div>;
-const Settings = () => <div>Settings Page</div>;
-
 const queryClient = new QueryClient();
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -74,30 +69,6 @@ const AppRoutes = () => {
         <ProtectedRoute>
           <DashboardLayout>
             <Recommendations />
-          </DashboardLayout>
-        </ProtectedRoute>
-      } />
-      
-      <Route path="/gamification" element={
-        <ProtectedRoute>
-          <DashboardLayout>
-            <Gamification />
-          </DashboardLayout>
-        </ProtectedRoute>
-      } />
-      
-      <Route path="/scan" element={
-        <ProtectedRoute>
-          <DashboardLayout>
-            <Scan />
-          </DashboardLayout>
-        </ProtectedRoute>
-      } />
-      
-      <Route path="/settings" element={
-        <ProtectedRoute>
-          <DashboardLayout>
-            <Settings />
           </DashboardLayout>
         </ProtectedRoute>
       } />
